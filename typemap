@@ -1,0 +1,17 @@
+TYPEMAP
+const char *    T_PV
+NICKAUDIOM4B *  T_OBJECT
+MP4SampleId     T_UV
+
+OUTPUT
+T_OBJECT
+    sv_setref_pv( $arg, CLASS, (void*)$var );
+
+INPUT
+T_OBJECT
+    if ( sv_isobject($arg) && SvTYPE(SvRV($arg)) == SVt_PVMG ) {
+        $var = INT2PTR($type, SvIVX((SV *) SvRV($arg)));
+    } else {
+        Perl_croak( aTHX_ \"${Package}::$func_name(): $var is not a blessed SV reference\" );
+    }
+
