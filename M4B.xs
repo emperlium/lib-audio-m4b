@@ -158,6 +158,13 @@ NICKAUDIOM4B::get_duration_in_msecs()
     OUTPUT:
         RETVAL
 
+MP4SampleId
+NICKAUDIOM4B::get_last_sample_id()
+    CODE:
+        RETVAL = THIS -> last_sample_id;
+    OUTPUT:
+        RETVAL
+
 U32
 NICKAUDIOM4B::get_average_bps()
     CODE:

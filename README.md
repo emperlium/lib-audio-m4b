@@ -125,6 +125,10 @@ The length of the audio stream in milliseconds (float).
 
 The length of the audio stream in seconds (float).
 
+### get\_last\_sample\_id()
+
+Get the last valid sample ID.
+
 ### get\_position\_in\_msecs()
 
 Returns the current position in milliseconds (float).

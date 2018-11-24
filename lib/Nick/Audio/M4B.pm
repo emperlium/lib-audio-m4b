@@ -130,6 +130,10 @@ The length of the audio stream in milliseconds (float).
 
 The length of the audio stream in seconds (float).
 
+=head2 get_last_sample_id()
+
+Get the last valid sample ID.
+
 =head2 get_position_in_msecs()
 
 Returns the current position in milliseconds (float).
