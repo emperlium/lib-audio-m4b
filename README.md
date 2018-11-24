@@ -57,7 +57,7 @@ Instantiates a new Nick::Audio::M4B object.
 
 Takes a filename as the first argument.
 
-The second argument (optional) is a scalar that'll be used to push decoded PCM to.
+The second argument (optional) is the scalar that'll be used to push AAC frames to.
 
 ### get\_init\_sample()
 
