@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 16;
+use Test::More tests => 17;
 use Digest::MD5 'md5_base64';
 
 BEGIN {
@@ -58,6 +58,8 @@ is_deeply(
 is( $m4b -> get_duration_in_msecs(), 1068, 'get_duration_in_msecs()' );
 
 is( $m4b -> get_duration_in_secs(), 1.068, 'get_duration_in_secs()' );
+
+is( $m4b -> get_last_sample_id(), 23, 'get_last_sample_id()' );
 
 is( $m4b -> get_average_bps(), 24986, 'get_average_bps()' );
 
