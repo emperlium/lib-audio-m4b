@@ -29,6 +29,46 @@ static const uint32_t sample_rates[] = {
     24000, 22050, 16000, 12000, 11025, 8000
 };
 
+static const char* audio_types[] = {
+    "AAC Main",
+    "AAC LC",
+    "AAC SSR",
+    "AAC LTP",
+    "AAC HE",
+    "AAC Scalable",
+    "TwinVQ",
+    "CELP",
+    "HVXC",
+    NULL, NULL,
+    "TTSI",
+    "Main Synthetic",
+    "Wavetable Syn",
+    "General MIDI",
+    "Algo Syn and Audio FX",
+    "ER AAC LC",
+    NULL,
+    "ER AAC LTP",
+    "ER AAC Scalable",
+    "ER TwinVQ",
+    "ER BSAC",
+    "ER ACC LD",
+    "ER CELP",
+    "ER HVXC",
+    "ER HILN",
+    "ER Parametric",
+    "SSC",
+    "PS",
+    "MPEG Surround",
+    NULL,
+    "Layer-1",
+    "Layer-2",
+    "Layer-3",
+    "DST",
+    "Audio Lossless",
+    "SLS",
+    "SLS non-core",
+};
+
 MODULE = Nick::Audio::M4B    PACKAGE = Nick::Audio::M4B
 
 PROTOTYPES: DISABLE
@@ -317,6 +357,25 @@ SV *
 NICKAUDIOM4B::get_buffer_out_ref()
     CODE:
         RETVAL = newRV_inc( THIS -> scalar_out );
+    OUTPUT:
+        RETVAL
+
+const char*
+NICKAUDIOM4B::get_audio_type()
+    CODE:
+        uint8_t type_id = MP4GetTrackAudioMpeg4Type(
+            THIS -> fh, THIS -> track_id
+        );
+
+        if (
+            type_id != MP4_MPEG4_INVALID_AUDIO_TYPE
+            && type_id <= 38
+            && audio_types[ type_id - 1 ] != NULL
+        ) {
+            RETVAL = audio_types[ type_id - 1 ];
+        } else {
+            RETVAL = "unknown";
+        }
     OUTPUT:
         RETVAL
 

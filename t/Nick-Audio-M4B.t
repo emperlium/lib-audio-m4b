@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 17;
+use Test::More tests => 18;
 use Digest::MD5 'md5_base64';
 
 BEGIN {
@@ -68,6 +68,8 @@ is( $m4b -> get_sample_rate(), 22050, 'get_sample_rate()' );
 is( $m4b -> get_channels(), 1, 'get_channels()' );
 
 is( $m4b -> get_samples_per_frame(), 1024, 'get_samples_per_frame()' );
+
+is( $m4b -> get_audio_type(), 'AAC LC', 'get_audio_type()' );
 
 is_deeply(
     $m4b -> get_meta(), {
