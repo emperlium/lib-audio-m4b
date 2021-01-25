@@ -207,4 +207,22 @@ sub get_position_in_secs {
     return $_[0] -> get_position_in_msecs() / 1000;
 }
 
+sub get_meta {
+    my $meta = $_[0] -> get_meta_xs();
+    for ( values %$meta ) {
+        utf8::decode( $_ );
+    }
+    return $meta;
+}
+
+sub get_chapters {
+    my $chapters = $_[0] -> get_chapters_xs();
+    if ( $chapters ) {
+        for ( @$chapters ) {
+            utf8::decode( $$_{'title'} );
+        }
+    }
+    return $chapters;
+}
+
 1;

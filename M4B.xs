@@ -154,7 +154,7 @@ NICKAUDIOM4B::DESTROY()
         Safefree( THIS );
 
 AV *
-NICKAUDIOM4B::get_chapters()
+NICKAUDIOM4B::get_chapters_xs()
     PREINIT:
         MP4Chapter_t * chapters = 0;
         uint32_t chapter_count = 0;
@@ -237,7 +237,7 @@ NICKAUDIOM4B::get_samples_per_frame()
         RETVAL
 
 HV *
-NICKAUDIOM4B::get_meta()
+NICKAUDIOM4B::get_meta_xs()
     INIT:
         RETVAL = newHV();
         sv_2mortal( (SV*)RETVAL );
