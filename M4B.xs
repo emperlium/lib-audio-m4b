@@ -79,6 +79,8 @@ NICKAUDIOM4B::new_xs( filename, scalar_out )
         SV *scalar_out;
     CODE:
         Newxz( RETVAL, 1, NICKAUDIOM4B );
+        MP4LogLevel verbosity = MP4_LOG_ERROR;
+        MP4LogSetLevel( verbosity );
         RETVAL -> fh = MP4Read( filename );
         if ( ! MP4_IS_VALID_FILE_HANDLE( RETVAL -> fh ) ) {
             croak( "Invalid file handle." );
